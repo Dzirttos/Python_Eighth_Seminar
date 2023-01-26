@@ -1,3 +1,8 @@
+def find_brackets(user_input):
+    user_input = user_input.replace('(', '( ')
+    user_input = user_input.replace(')', ') ')
+    return user_input
+
 def calc(a, b, ch):
     if ch == '+':
         return a + b
@@ -30,3 +35,24 @@ def add_sub(modilied_list):
         del modilied_list[j:j + 3]
         if j == len(modilied_list)-1:
             break
+
+def brackets(z):
+    i = 0
+    while i <= len(z)-1:
+        if z[i] == '(' :
+            result = calc(int(z[i + 1]), int(z[i + 3]), z[i + 2])
+            z.insert(i, result)
+            del z[i+1:i + 5]
+            i += 1
+            while i <= len(z):
+                if z[i] == ')': 
+                    z.pop(i)
+                    break
+        
+                else: 
+                    result = calc(int(z[i - 1]), int(z[i + 1]), z[i])
+                    z.insert(i-1, result)
+                    del z[i:i + 3]
+
+            
+        i += 1
